@@ -1,0 +1,5 @@
+../Core/Src/usart.c:5:6:usart_init	1
+../Core/Src/usart.c:21:6:usart_putc	2
+../Core/Src/usart.c:28:6:usart_puts	2
+../Core/Src/usart.c:34:6:usart_puthex	3
+../Core/Src/usart.c:51:6:usart_putdec	4

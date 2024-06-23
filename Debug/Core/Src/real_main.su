@@ -1,0 +1,6 @@
+../Core/Src/real_main.c:18:9:class_init	16	static
+../Core/Src/real_main.c:36:9:data_sent	16	static
+../Core/Src/real_main.c:43:9:data_received	16	static
+../Core/Src/real_main.c:107:10:descriptor	16	static
+../Core/Src/real_main.c:112:10:handle_setup	16	static
+../Core/Src/real_main.c:135:6:real_main	4	static

@@ -19,4 +19,14 @@ extern USBD_ClassTypeDef passwordManagerClass;
 
 void real_main();
 
+int   vault_unlock();
+int   vault_is_locked();
+void  vault_lock();
+
+int   password_count();
+char *password_name(int index);
+char *password_retrieve(int index);
+void  password_new(char *name, char *password);
+void  password_save(int index, char *password);
+
 #endif /* SRC_REAL_MAIN_H_ */

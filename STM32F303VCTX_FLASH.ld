@@ -130,6 +130,11 @@ SECTIONS
     KEEP (*(.fini_array*))
     PROVIDE_HIDDEN (__fini_array_end = .);
     . = ALIGN(4);
+    
+  	. = ALIGN(2048);
+  	KEEP(*(.vault));
+  	. = ALIGN(2048);
+
   } >FLASH
 
   /* Used by the startup to initialize data */
@@ -147,7 +152,6 @@ SECTIONS
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
-
   } >RAM AT> FLASH
 
   _siccmram = LOADADDR(.ccmram);
@@ -195,7 +199,7 @@ SECTIONS
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
   } >RAM
-
+  
   /* Remove information from the compiler libraries */
   /DISCARD/ :
   {

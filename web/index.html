@@ -6,22 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Manager</title>
 
-    <script>
-        let device;
-        async function connectDialog() {
-            device = await navigator.usb.requestDevice({ filters: [{ vendorId: 0x30e0 }] })
-            console.log("Device: " + device);
-            await device.open();
-            device.selectConfiguration(1);
-            device.claimInterface(0);
-        }
-    </script>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
 </head>
 
 <body>
-    <h1>Password Manager da Giovanni Spera, Sicurezza e Atmosfera</h1>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <h1 class="title is-size-2">Password Manager da Giovanni Spera, Sicurezza e Atmosfera</h1>
+        </div>
+    </section>
 
-    <button onclick="connectDialog()">Collega dispositivo</button>
+    <section class="section" id="connect-dialog">
+        <div class="control" id="connect-button">
+            <button onclick="connectDialog()" class="button is-primary">Collega dispositivo</button>
+        </div>
+        <div class="control is-hidden" id="add-password">
+            <button onclick="modalNewPassword()" class="button is-primary">Nuova password</button>
+        </div>
+    </section>
+
+    <section class="section" id="passwords-list">
+    </section>
+
+    <div id="password-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title"><span class="name"></span></p>
+                <button class="delete" aria-label="close" onclick="closePasswordModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="box">
+                    <span class="password"></span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="edit-password-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title"><span class="name"></span></p>
+                <button class="delete" aria-label="close" onclick="closePasswordModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="box">
+                    <input id="edit-password-field" class="input password" placeholder="Nuova password"></span>
+                </div>
+            </section>
+            <div class="modal-card-foot">
+                <button class="button is-success" onclick="updatePassword()">Aggiorna</button>
+            </div>
+
+            <span class="index is-hidden"></span>
+        </div>
+    </div>
+
+    <div id="new-password-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Nuova password</p>
+                <button class="delete" aria-label="close" onclick="closePasswordModal()"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="box">
+                    <input id="new-password-name" class="input" placeholder="Nome"></span>
+                </div>
+                <div class="box">
+                    <input id="new-password-field" class="input" placeholder="Nuova password"></span>
+                </div>
+            </section>
+            <div class="modal-card-foot">
+                <button class="button is-success" onclick="newPassword()">Aggiorna</button>
+            </div>
+
+            <span class="index is-hidden"></span>
+        </div>
+    </div>
 </body>
 
 </html>
